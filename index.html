@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>px-action-menu Demo</title>
+  <link rel="stylesheet" type="text/css" href="css/px-action-menu-demo.css" />
+  <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../px-theme/px-theme-styles.html">
+  <style include="px-theme-styles" is="custom-style"></style>
+
+  <link rel="import" href="../px-api-viewer/px-api-viewer.html" />
+  <link rel="import" href="../px-tabs/px-tab-set.html" />
+  <link rel="import" href="../px-dropdown/px-dropdown.html" />
+  <link rel="import" href="px-action-menu.html" />
+  <!--<link rel="import" href="px-action-menu-item.html" />-->
+  <!--<link rel="import" href="px-action-menu-divider.html" />-->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <link rel="import" href="../px-demo-snippet/px-demo-snippet.html">
+  <link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+  <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
+</head>
+
+<body>
+
+  <!-- Wrap elements with auto-binding template to -->
+  <!-- allow use of Polymer bindings in main document -->
+  <template id="just-for-demo" is="dom-bind">
+
+    <!-- description -->
+    <div class="hero u-p++ text--shadow">
+      <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-action-menu" target="_blank">
+        <iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github
+      </a>
+      <h1 class="delta">px-action-menu</h1>
+      <p class="description-text">
+        An action menu is used to provide a small subset of actions to perform.
+      </p>
+      <div class="flex">
+        <img class="u-mr-- " src="https://img.shields.io/travis/PredixDev/px-action-menu.svg?style=flat-square" alt="Travis"  onerror="this.style.display='none'"/>
+        <img class="u-mr--" src="https://img.shields.io/bower/v/px-action-menu.svg?style=flat-square" alt="Bower" onerror="this.style.display='none'" />
+        <img class="u-mr--" src="https://img.shields.io/github/issues-raw/PredixDev/px-action-menu.svg?style=flat-square" alt="Issues" onerror="this.style.display='none'" />
+      </div>
+    </div>
+    <br />
+
+    <!-- mega demo -->
+    <div style="position: relative;" class="u-pb++ flex flex--col" id="defaultTab">
+      <px-tab-pages selected="{{selected}}">
+        <template is="dom-repeat" items="{{optionsArray}}">
+          <section class="tab-page">
+            <div class="mega-demo flex u-ph++ u-pb++">
+              <!-- Properties -->
+              <div class="properties u-ph+ u-pb+ u-mt+">
+                <p class="epsilon">Properties</p>
+                <div class="flex u-mb-">
+                  <input id="alignRight" class="toggle__input toggle__input--small" type="checkbox" checked="{{item.alignRight::change}}">
+                  <label for="alignRight" class="toggle__label toggle__label--small"></label>
+                  <div class="u-ml-">Align right</div>
+                </div>
+              </div>
+
+              <div class="demoContainer u-mt+">
+                <!-- demo -->
+                <div class="flex flex--col">
+                  <div class="flex__item demo u-ph+ u-pb+">
+                    <div class$="{{_isAlignRight(item.alignRight)}} u-mt+">
+                      <px-action-menu
+                        align-right="[[item.alignRight]]">
+                        <button class="btn btn--tertiary btn--large">
+                          Action Menu <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <px-action-menu-item label="Save" icon="fa-floppy-o"></px-action-menu-item>
+                        <px-action-menu-item label="Upload" icon="fa-upload"></px-action-menu-item>
+                        <px-action-menu-divider></px-action-menu-divider>
+                        <px-action-menu-item label="Delete" icon="fa-trash-o"></px-action-menu-item>
+                      </px-action-menu>
+                    </div>
+                    <div class="u-mt">
+                      <template is="dom-repeat" items="events">
+
+                      </template>
+                    </div>
+                  </div>
+                  <div class="flex__item">
+                    <px-demo-snippet
+                      element-properties={{item}}
+                      element-name="px-action-menu">
+                    </px-demo-snippet>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="apiContainer">
+              <div class="flex flex--col api u-mt++" >
+              
+                <div class="flex">
+                  <div class="flex__item">
+                    <div class="flex flex--col childrenAssociated">
+                      <div class="componentHeader">Children Components</div>
+                      <div class="componentList">
+                        <ul>
+                          <li><a href="javascript:">px-action-menu-item</a></li>
+                          <li><a href="javascript:">px-action-menu-divider</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <div>
+                  <px-api-viewer source="px-action-menu"></px-api-viewer>
+                </div>
+              </div>
+            </div>
+          </section>
+        </template>
+      </px-tab-pages>
+    </div>
+    <footer class="footer flex flex--center">
+      <div class="footer__container u-pv++">
+        <div>
+          <a href="https://ge.com/digital" >
+            <img src="monogram-wdmk.png" alt="GE Monogram" class="footer__img">
+          </a>
+        </div>
+        <div class="footer__list">
+          <ul class="list-inline list-inline--delimited">
+            <li>
+              <a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
+            </li>
+            <li>
+              <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
+            </li>
+            <li>Copyright &copy; 2016 General Electric Company. All rights reserved.</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </template>
+  <script>
+    window.addEventListener('WebComponentsReady', function() {
+
+      var template = document.querySelector('template[is=dom-bind]'),
+          optionsArray = [
+            {
+              alignRight: false,
+              lightDomContent: '<button class="btn btn--tertiary btn--large">'+
+                          'Action Menu <i class="fa fa-chevron-down"></i>'+
+                        '</button>'+
+                        '<px-action-menu-item label="Save" icon="fa-floppy-o"></px-action-menu-item>'+
+                        '<px-action-menu-item label="Upload" icon="fa-upload"></px-action-menu-item>'+
+                        '<px-action-menu-divider></px-action-menu-divider>'+
+                        '<px-action-menu-item label="Delete" icon="fa-trash-o"></px-action-menu-item>'
+            }
+          ]
+
+          template._isAlignRight = function _isAlignRight(alignRight) {
+            if (alignRight) {
+              return 'float--right';
+            }
+            return '';
+          }
+
+          template.selected = "0";
+          template.optionsArray = optionsArray;
+    });
+  </script>
+</body>
+</html>

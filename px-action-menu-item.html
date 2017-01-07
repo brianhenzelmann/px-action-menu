@@ -1,0 +1,68 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+
+<link rel="import" href="css/px-action-menu-item-styles.html">
+
+<!--
+An action menu is used to provide a small subset of actions to perform.
+
+##### Usage
+
+    <px-action-menu counter-value="1"><a href="javascript:" on-click="handleClick">Click here to increment counter:</a><span>{{counterValue}}</span></px-action-menu>
+
+@element px-action-menu
+@blurb An action menu is used to provide a small subset of actions to perform.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-action-menu-item">
+  <template>
+    <style include="px-action-menu-item-styles"></style>
+    <li on-click="_fireEvent"><span class$="fa [[icon]]"></span> [[label]]</li>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-action-menu-item',
+
+    properties: {
+      /**
+      * Font Awesome icon class
+      *
+      * @property icon
+      */
+      icon: {
+        type: String,
+        value: ''
+      },
+
+      /**
+      * Label displayed for menu item
+      *
+      * @property alignRight
+      */
+      label: {
+        type: String,
+        value: ''
+      }
+    },
+
+    /**
+    * Handles click event of action-menu-item
+    *
+    * @method _fireEvent
+    */
+    _fireEvent: function(e) {
+      this.fire('px-action-menu-item-clicked', {
+        label: this.label
+      });
+    }
+  });
+</script>

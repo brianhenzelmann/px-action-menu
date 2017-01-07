@@ -1,0 +1,27 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+//
+// Sass for the Predix notion of the px-action-menu component
+//
+// @author Brian Henzelmann <brian.henzelmann@ge.com>
+//
+
+@import "px-iconography-design/_base.iconography.scss";
+
+li {
+  height: 1px;
+  margin: 8.5px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #d1d0d8;
+  padding: 0px !important;
+  margin: 0px !important;
+}

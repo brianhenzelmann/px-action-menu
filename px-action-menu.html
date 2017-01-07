@@ -1,0 +1,106 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+
+<link rel="import" href="css/px-action-menu-styles.html">
+<link rel="import" href="px-action-menu-divider.html">
+<link rel="import" href="px-action-menu-item.html">
+
+<!--
+An action menu is used to provide a small subset of actions to perform.
+
+##### Usage
+
+    <px-action-menu>
+      <!-- Button - ->
+      <button class="btn btn--tertiary btn--large">
+        Action Menu <i class="fa fa-chevron-down"></i>
+      </button>
+
+      <!-- Menu items - ->
+      <px-action-menu-item label="Save" icon="fa-floppy-o"></px-action-menu-item>
+      <px-action-menu-item label="Upload" icon="fa-upload"></px-action-menu-item>
+      <px-action-menu-divider></px-action-menu-divider>
+      <px-action-menu-item label="Delete" icon="fa-trash-o"></px-action-menu-item>
+    </px-action-menu>
+
+@element px-action-menu
+@blurb An action menu is used to provide a small subset of actions to perform.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-action-menu">
+  <template>
+    <style include="px-action-menu-styles"></style>
+    <div class="btn--group" on-tap="_toggleMenu">
+      <content select="button.btn"></content>
+      <ul class$="{{_getMenuAlignment(alignRight)}} dropdown-menu list-ui action-list" hidden$="{{!_showMenu}}">
+        <content></content>
+      </ul>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'px-action-menu',
+
+    /**
+    * Event fired when any px-action-menu-item is clicked
+    * `evt.detail` contains:
+    * ```
+    { label: "Label" }
+    * ```
+    * @event px-action-menu-item-clicked
+    */
+
+    properties: {
+      /**
+      * This property keeps track of the action menu alignment (left, right)
+      *
+      * @property alignRight
+      */
+      alignRight: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+      * This private property keeps track of action menu item visibility
+      *
+      * @property _showMenu
+      */
+      _showMenu: {
+        type: Boolean,
+        value: false
+      }
+    },
+
+    /**
+    * Handles click event of action-menu-item
+    *
+    * @method _fireEvent
+    */
+    _toggleMenu: function _toggleMenu() {
+      this._showMenu = !this._showMenu;
+    },
+
+    /**
+    * 
+    *
+    * @method _getMenuAlignment
+    * @return {String} class
+    */
+    _getMenuAlignment: function _getMenuAlignment(alignRight) {
+      if (alignRight) {
+        return 'align-right';
+      }
+      return 'align-left';
+    }
+  });
+</script>

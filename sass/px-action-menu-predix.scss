@@ -1,0 +1,82 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+//
+// Sass for the Predix notion of the px-action-menu component
+//
+// @author Brian Henzelmann <brian.henzelmann@ge.com>
+//
+
+/*
+THIS FILE SHOULD CONTAIN ONLY RULES SPECIFIC TO PREDIX BRANDING
+common/abstract rules go in px-action-menu-sketch.scss, not in this file.
+*/
+
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+
+@import 'px-action-menu-sketch.scss';
+
+// Tools
+
+// Generic
+
+// Base
+@import "px-iconography-design/_base.iconography.scss";
+
+// Meta
+
+// Objects
+$inuit-enable-btn--bare--primary : true;
+$inuit-enable-btn--tertiary : true;
+$inuit-enable-btn--disabled : true;
+$inuit-enable-btn--bare : true;
+$inuit-enable-btn--bare--primary : true;
+$inuit-enable-btn--icon : true;
+@import 'px-buttons-design/_objects.buttons.scss';
+
+// Component
+
+// Trumps
+
+.btn--group {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn--group .btn {
+  position: relative;
+  float: left;
+}
+.btn--group .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 10px 0 0 !important;
+  list-style: none;
+  font-size: 15px;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 3px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  background-clip: padding-box;
+}
+.btn--group .dropdown-menu.align-right {
+  right: 0;
+}
+.btn--group .dropdown-menu.align-left {
+  left: 0;
+}
