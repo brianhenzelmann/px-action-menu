@@ -81,6 +81,33 @@ An action menu is used to provide a small subset of actions to perform.
       }
     },
 
+    attached: function(){
+      //listen for document click
+      document.addEventListener('click', this._onCaptureClick.bind(this), true);
+    },
+
+    /**
+     * Returns whether this element is within the path.
+     */
+    _selfInPath: function(path) {
+      path = path || [];
+      for (var i = 0; i < path.length; i++) {
+        if (path[i] === this) {
+          return this;
+        }
+      }
+    },
+
+    /**
+     * Determines whether the menu shouuld close on document click
+     */
+    _onCaptureClick: function(e){
+      if (!this._selfInPath(Polymer.dom(e).path) && this._showMenu){
+        this._toggleMenu();
+      }
+
+    },
+
     /**
     * Handles click event of action-menu-item
     *
@@ -91,7 +118,7 @@ An action menu is used to provide a small subset of actions to perform.
     },
 
     /**
-    * 
+    *
     *
     * @method _getMenuAlignment
     * @return {String} class
